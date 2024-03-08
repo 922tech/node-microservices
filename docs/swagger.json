@@ -1,0 +1,42 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Authentication REST API",
+    "description": "Authentication API microservice documentation",
+    "contact": {
+      "name": "API Support",
+      "email": "922tech@gmail.com"
+    }
+  },
+  "host": "localhost:3000/",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authentication API microservice documentation"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {},
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "api/auth/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
