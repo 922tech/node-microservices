@@ -5,8 +5,9 @@ import { body } from "express-validator";
 
 const router = express.Router()
 
-router.get('api/auth/login',(req: Request, res: Response, next: NextFunction) => {
-    res.json({message: 'hello'})
+router.get('/signin',(req: Request, res: Response, next: NextFunction) => {
+    console.log('LOGIN');
+    res.json({message: 'hello'});
 });
 
 export { router };

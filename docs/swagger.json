@@ -28,7 +28,7 @@
     "application/json"
   ],
   "paths": {
-    "api/auth/login": {
+    "auth/login": {
       "get": {
         "description": "",
         "responses": {
