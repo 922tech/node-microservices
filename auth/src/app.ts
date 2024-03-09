@@ -1,39 +1,46 @@
 import express from 'express';
-const swaggerUI = require('swagger-ui-express');
 import { router as signInRouter } from './routes/signIn';
+import { router as signupRouter } from './routes/signup';
+import {
+  errorMiddleware,
+  versioningMiddleware,
+} from './middlewares/middlewares';
 
+const swaggerUI = require('swagger-ui-express');
 const morgan = require('morgan');
 const session = require('express-session');
-
 const app = express();
 const swaggerDocument = require('../docs/swagger.json');
 
-if (process.env.NODE_ENV !== 'production'){
-    app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+// middlewares
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 }
-
 app.use(morgan('dev'));
-app.use(express.json());
-app.set("trust proxy", true);
 
-app.use(session({
+app.use(express.json());
+
+app.set('trust proxy', true);
+console.log(process.env.NODE_ENV);
+
+app.use(
+  session({
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: true,
-    cookie: { 
-        secure: process.env.NODE_ENV !== "test" &&
-        process.env.NODE_ENV !== "development" 
-    }
-}));
+    cookie: {
+      secure: !['test', 'development'].includes(process.env.NODE_ENV as string),
+    },
+  }),
+);
+app.use(versioningMiddleware);
 
-app.use('/auth',signInRouter);
+// router registration
+app.use('/auth/signin', signInRouter);
+app.use('/auth/signup', signupRouter);
 
-app.use(signInRouter);
+// apply error middleware
+app.use(errorMiddleware);
 
-app.get('', (req, res) => {
-    
-    res.status(200).json({'message':'hello'});
-})
-
-console.log('app started')
+console.log('App started!');
 export default app;

@@ -6,7 +6,17 @@
     {
       "type": "typescript",
       "tsconfig": "simple-typescript-starter/tsconfig.json",
-      "problemMatcher": ["$tsc"]
+      "problemMatcher": [
+        "$tsc"
+      ]
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "path": "auth",
+      "problemMatcher": [],
+      "label": "npm: dev - auth",
+      "detail": "npx nodemon -V"
     }
   ]
 }
