@@ -28,7 +28,17 @@
     "application/json"
   ],
   "paths": {
-    "auth/login": {
+    "/auth/signin": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/signin": {
       "get": {
         "description": "",
         "responses": {
