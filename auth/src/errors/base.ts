@@ -7,5 +7,5 @@ export abstract class BaseError extends Error {
         Object.setPrototypeOf(this, BaseError.prototype);
     }
 
-    abstract serializeError(): { detail: string, field?: string };
+    abstract serializeError(): any;
 }

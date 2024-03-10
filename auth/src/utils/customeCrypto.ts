@@ -16,22 +16,27 @@ export class Password {
 }
 
 export class JWT {
-
   public static createAccessToken(payload: Object) {
     return jwt.sign(
-      {'data': JSON.stringify(payload)},
+      { data: JSON.stringify(payload), type: 'access' },
       settings.JWT.secretKey,
-      { expiresIn: settings.JWT.accessTokenLife, algorithm: 'HS256' },
+      {
+        expiresIn: settings.JWT.accessTokenLife,
+        algorithm: 'HS256',
+      },
     );
   }
 
   public static createRefreshToken(payload: Object) {
-    console.log(settings.JWT.refreshTokenLife,);
-    
+    console.log(settings.JWT.refreshTokenLife);
+
     return jwt.sign(
-      {'data': JSON.stringify(payload)},
-      settings.JWT.secretKey, 
-      { expiresIn: settings.JWT.refreshTokenLife, algorithm: 'HS256' },
+      { data: JSON.stringify(payload), type: 'refresh' },
+      settings.JWT.secretKey,
+      {
+        expiresIn: settings.JWT.refreshTokenLife,
+        algorithm: 'HS256',
+      },
     );
   }
 
@@ -39,4 +44,3 @@ export class JWT {
     return jwt.verify(token, settings.JWT.secretKey);
   }
 }
-
