@@ -9,12 +9,10 @@ export function errorMiddleware(
   res: Response,
   next: NextFunction,
 ) {
-  console.log('/*/*/*/**//*');
-
   if (error instanceof BaseError) {
-    return res.status(error.statusCode).json({
-      detail: true ? error.message : (error as BaseError).serializeError(),
-    });
+    return res
+      .status(error.statusCode)
+      .json((error as BaseError).serializeError());
   }
   // Handle other types of errors
   return res.status(500).json({ message: 'Internal Server Error' });
@@ -38,8 +36,7 @@ export function requestValidationMiddleware(
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    throw new RequestValidationError(errors.array());
+    next(new RequestValidationError(errors.array()));
   }
-
   next();
 }
