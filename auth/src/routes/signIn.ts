@@ -4,8 +4,6 @@ import { authResponseHandler } from '../utils/utils';
 import { JWT } from '../utils/customeCrypto';
 import { AuthError } from '../errors/errors';
 
-const errors = require('../errors/errors');
-
 const router = Router();
 
 router.post(
@@ -21,8 +19,8 @@ router.post(
         if (!user) {
           new AuthError();
         } 
-        const accessToken = JWT.createAccessToken(user._id.$oid);
-        const refreshToken = JWT.createRefreshToken(user._id.$oid);
+        const accessToken = JWT.createAccessToken(user.id);
+        const refreshToken = JWT.createRefreshToken(user.id);
         res.json({ accessToken: accessToken, refreshToken: refreshToken });
       })
       .catch((error) => {

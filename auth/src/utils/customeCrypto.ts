@@ -27,6 +27,10 @@ export class JWT {
     );
   }
 
+  public static verify(token: string): any {
+    return jwt.verify(token, settings.JWT.secretKey);
+  }
+
   public static createRefreshToken(payload: Object) {
     console.log(settings.JWT.refreshTokenLife);
 
@@ -40,7 +44,25 @@ export class JWT {
     );
   }
 
-  public static verify(token: string) {
-    return jwt.verify(token, settings.JWT.secretKey);
+  public static verifyAcess(token: string): string | undefined {
+    try {
+      const decoded = JWT.verify(token);
+      if (decoded.type === 'access') {
+        return JSON.parse(decoded.data);
+      } else return decoded;
+    } catch (JsonWebTokenError) {
+      return undefined;
+    }
+  }
+
+  public static verifyAndRefresh(token: string): string | undefined {
+    let fresh;
+    console.log(settings.JWT);
+
+    const decoded = JWT.verify(token);
+    if (decoded.type === 'refresh') {
+      fresh = JWT.createAccessToken(decoded.id);
+    }
+    return fresh;
   }
 }

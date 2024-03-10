@@ -35,6 +35,7 @@ export function requestValidationMiddleware(
 ) {
   const errors = validationResult(req);
 
+  console.log(errors);
   if (!errors.isEmpty()) {
     next(new RequestValidationError(errors.array()));
   }

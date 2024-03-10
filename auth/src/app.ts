@@ -1,6 +1,7 @@
 import express from 'express';
 import { router as signInRouter } from './routes/signIn';
 import { router as signupRouter } from './routes/signup';
+import { router as refreshRouter } from './routes/refresh';
 import {
   errorMiddleware,
   versioningMiddleware,
@@ -38,6 +39,7 @@ app.use(versioningMiddleware);
 // router registration
 app.use('/auth/signin', signInRouter);
 app.use('/auth/signup', signupRouter);
+app.use('/auth/refresh', refreshRouter);
 
 // apply error middleware
 app.use(errorMiddleware);
