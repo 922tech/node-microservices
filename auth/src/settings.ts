@@ -7,5 +7,11 @@ export const settings = {
 
     database: {
         MONGO_URI: process.env.MONGO_URI ? process.env.MONGO_URI : 'mongodb://localhost:27017/authDatabase'
+    },
+
+    redis: {
+        AUTH_INPUT_CHANNEL: process.env.REDIS_CHANNLE_NEMA ? process.env.REDIS_CHANNLE_NEMA : 'AUTH_INPUT',
+        AUTH_OUTPUT_CHANNEL: process.env.REDIS_CHANNLE_NEMA ? process.env.REDIS_CHANNLE_NEMA : 'AUTH_OUTPUT',
+        URI: process.env.REDIS_URI? process.env.REDIS_URI : 'redis://localhost:6379'
     }
 }

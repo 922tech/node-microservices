@@ -56,6 +56,7 @@
     "jest-cucumber": "^3.0.1",
     "mongoose": "^8.2.1",
     "morgan": "^1.10.0",
+    "redis": "^4.6.13",
     "socket.io": "^4.7.4",
     "socket.io-client": "^4.7.4",
     "sticky-session": "^1.1.2"
