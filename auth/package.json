@@ -1,7 +1,7 @@
 {
-  "name": "typescript-starter",
+  "name": "authentication-service",
   "version": "1.0.0",
-  "description": "A basic typescript app starter for 2023.",
+  "description": "An authentication microservice with ",
   "main": "index.js",
   "scripts": {
     "build": "rimraf ./build && tsc",
@@ -65,6 +65,7 @@
     "mongoose": "^8.2.1",
     "morgan": "^1.10.0",
     "package.json": "^2.0.1",
+    "socket.io": "^4.7.4",
     "sticky-session": "^1.1.2"
   }
 }
